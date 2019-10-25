@@ -35,3 +35,18 @@
 # test_4
 # 1
 # 2
+
+
+def print_result(func):
+    def wrapper(*args):
+        print(func.__name__)
+        res = func(*args)
+        if isinstance(res, list):
+            print('\n'.join([str(x) for x in res]))
+        elif isinstance(res, dict):
+            print('\n'.join(['{0} = {1}'.format(key, value) for key, value in res.items()]))
+        else:
+            print(res)
+        return res
+
+    return wrapper
